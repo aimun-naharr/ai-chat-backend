@@ -1,18 +1,25 @@
-const express = require( 'express' );
-const axios = require( 'axios' );
-require( 'dotenv' ).config();
-const OpenAI = require( "openai" );
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+require('dotenv').config();
+const OpenAI = require("openai");
 const AI = new OpenAI();
+
+// Allow all origins and methods
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use( express.json() );
+app.use(express.json());
 
+app.use(cors({
+  origin: '*',  // Allow requests from any origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],  // Allow all HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allow these headers
+}));
+app.post('/api/chat', async (req, res) => {
 
-app.post( '/api/chat', async ( req, res ) => {
+  return res.json({ response: req.body.message });
+});
 
-  return res.json( { response: req.body.message } );
-} );
-
-app.listen( PORT, () => console.log( `Server running on http://localhost:${PORT}` ) );
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
