@@ -28,7 +28,7 @@ Project Setup
 To start the server, run the following command:
 
 ```bash
-node src/main.js
+npm start
 ```
 
 The server will be accessible at `http://localhost:5000`.
