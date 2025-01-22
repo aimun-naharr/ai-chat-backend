@@ -2,8 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 require('dotenv').config();
-const OpenAI = require("openai");
-const AI = new OpenAI();
+
 
 // Allow all origins and methods
 
